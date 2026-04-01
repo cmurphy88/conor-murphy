@@ -48,7 +48,7 @@ export default function Process() {
           <div
             key={step.number}
             data-process-item
-            className="flex gap-8 md:gap-16 py-10"
+            className="flex gap-8 md:gap-16 py-6 md:py-10"
             style={{ opacity: 0 }}
           >
             <span className="font-mono text-accent text-sm pt-1 shrink-0">{step.number}</span>

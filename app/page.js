@@ -14,7 +14,8 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <LogoBar />
+        {/* Add this back in when there are more than one worked on */}
+        {/* <LogoBar /> */}
         <FeaturedWork />
         <Process />
         <Testimonials />

@@ -46,6 +46,13 @@
   color-scheme: dark;
 }
 
+/* Tighter section spacing on mobile */
+@media (max-width: 767px) {
+  :root {
+    --py-section: clamp(3rem, 8vw, 5rem);
+  }
+}
+
 html {
   background-color: var(--color-ink);
   color: var(--color-fog);

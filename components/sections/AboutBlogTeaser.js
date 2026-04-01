@@ -31,7 +31,7 @@ export default function AboutBlogTeaser() {
   return (
     <section id="about" className="px-8 max-w-[1440px] mx-auto" style={{ paddingBlock: 'var(--py-section)' }}>
       {/* About — two column */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-12 md:mb-24">
         <div>
           <SectionLabel>About</SectionLabel>
           <TextReveal
@@ -43,7 +43,7 @@ export default function AboutBlogTeaser() {
           </TextReveal>
           <FadeUp>
             <p className="text-fog-muted leading-relaxed mb-4">
-              I'm Conor — a web designer based in Dublin. I build websites for local businesses
+              I'm Conor — a web designer based in Fermanagh. I build websites for local businesses
               that want to be found online and make a good impression when people arrive. Butchers,
               restaurants, tradespeople, solicitors — if you serve a local community, I can help.
             </p>

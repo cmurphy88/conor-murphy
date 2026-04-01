@@ -22,7 +22,7 @@ export default function Testimonials() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {TESTIMONIALS.map((t, i) => (
           <FadeUp key={t.name} delay={i * 0.12}>
-            <blockquote className="flex flex-col gap-6 p-8 rounded-xl bg-ink-soft border border-white/5 h-full">
+            <blockquote className="flex flex-col gap-6 p-6 md:p-8 rounded-xl bg-ink-soft border border-white/5 h-full">
               <span className="text-accent font-mono text-sm font-medium">{t.metric}</span>
               <p className="text-fog leading-relaxed flex-1">"{t.quote}"</p>
               <footer>
