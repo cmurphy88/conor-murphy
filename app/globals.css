@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Color Palette --- */
+  --color-ink:          #0D0D0D;
+  --color-ink-soft:     #141414;
+  --color-fog:          #F0F0F0;
+  --color-fog-muted:    #A0A0A0;
+  --color-accent:       #4F46E5;
+  --color-accent-hover: #4338CA;
+
+  /* Semantic aliases */
+  --color-background: var(--color-ink);
+  --color-foreground: var(--color-fog);
+
+  /* --- Typography --- */
+  --font-display: var(--font-clash-display);
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
+
+  /* Fluid type scale */
+  --text-hero:  clamp(3rem, 1rem + 8vw, 8rem);
+  --text-h1:    clamp(2.5rem, 1rem + 5vw, 5.5rem);
+  --text-h2:    clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  --text-h3:    clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  --text-body:  clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --text-sm:    0.875rem;
+  --text-label: 0.75rem;
+
+  /* --- Section spacing --- */
+  --py-section: clamp(5rem, 10vw, 7.5rem);
+
+  /* --- Transitions --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--color-ink);
+  color: var(--color-fog);
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Restore cursor on touch devices */
+@media (hover: none) {
+  html { cursor: auto; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Film grain overlay via inline SVG feTurbulence */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ============================================================
+   TYPOGRAPHY HELPER
+   ============================================================ */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-fog);
+}
+
+/* ============================================================
+   SCROLLBAR — hidden, Lenis handles scrolling
+   ============================================================ */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
