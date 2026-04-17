@@ -1,16 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 const NAV_LINKS = [
-  { label: 'Work', href: '#work' },
+  { label: 'Work',    href: '#work' },
+  { label: 'Pricing', href: '#pricing' },
   { label: 'Process', href: '#process' },
-  { label: 'About', href: '#about' },
-  { label: 'Blog', href: '#blog' },
+  { label: 'About',   href: '/about' },
+  { label: 'Blog',    href: '/blog' },
 ]
 
 export default function Navigation() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -20,11 +23,19 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
+
+  // On the homepage, use bare #hash links (no double-hash issue).
+  // On inner pages, prefix with / so the browser navigates home first.
+  function resolveHref(href) {
+    if (href.startsWith('#')) {
+      return pathname === '/' ? href : `/${href}`
+    }
+    return href
+  }
 
   return (
     <>
@@ -42,7 +53,7 @@ export default function Navigation() {
             {NAV_LINKS.map(link => (
               <li key={link.href}>
                 <Link
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   className="text-sm text-fog-muted hover:text-fog transition-colors duration-200"
                 >
                   {link.label}
@@ -53,10 +64,10 @@ export default function Navigation() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="#contact"
+              href={resolveHref('#contact')}
               className="hidden md:flex h-10 items-center px-5 rounded-full bg-accent text-fog text-sm font-medium hover:bg-accent-hover transition-colors duration-200"
             >
-              Let's Talk
+              {"Let's Talk"}
             </Link>
 
             <button
@@ -82,7 +93,7 @@ export default function Navigation() {
         {NAV_LINKS.map(link => (
           <Link
             key={link.href}
-            href={link.href}
+            href={resolveHref(link.href)}
             onClick={() => setMenuOpen(false)}
             className="font-display text-4xl font-semibold text-fog hover:text-accent transition-colors duration-200"
           >
@@ -90,11 +101,11 @@ export default function Navigation() {
           </Link>
         ))}
         <Link
-          href="#contact"
+          href={resolveHref('#contact')}
           onClick={() => setMenuOpen(false)}
           className="mt-4 h-14 px-8 flex items-center rounded-full bg-accent text-fog text-lg font-medium"
         >
-          Let's Talk
+          {"Let's Talk"}
         </Link>
       </div>
     </>

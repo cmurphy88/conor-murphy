@@ -51,7 +51,7 @@ export default function AboutBlogTeaser() {
               No jargon, no bloated packages. Just a site that works for your business.
             </p>
             <Link
-              href="#"
+              href="/about"
               className="inline-flex items-center gap-2 text-fog text-sm font-medium border-b border-fog/20 pb-0.5 hover:border-fog transition-colors duration-200"
             >
               More about me →
@@ -75,7 +75,7 @@ export default function AboutBlogTeaser() {
       <div id="blog">
         <div className="flex items-center justify-between mb-10">
           <SectionLabel>Thinking</SectionLabel>
-          <Link href="#" className="text-fog-muted text-sm hover:text-fog transition-colors duration-200">
+          <Link href="/blog" className="text-fog-muted text-sm hover:text-fog transition-colors duration-200">
             All posts →
           </Link>
         </div>

@@ -4,6 +4,7 @@ import Hero from '@/components/sections/Hero'
 import LogoBar from '@/components/sections/LogoBar'
 import FeaturedWork from '@/components/sections/FeaturedWork'
 import Process from '@/components/sections/Process'
+import Pricing from '@/components/sections/Pricing'
 import Testimonials from '@/components/sections/Testimonials'
 import AboutBlogTeaser from '@/components/sections/AboutBlogTeaser'
 import FinalCTA from '@/components/sections/FinalCTA'
@@ -18,6 +19,7 @@ export default function Home() {
         {/* <LogoBar /> */}
         <FeaturedWork />
         <Process />
+        <Pricing />
         <Testimonials />
         <AboutBlogTeaser />
         <FinalCTA />

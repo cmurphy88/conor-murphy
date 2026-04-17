@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import FadeUp from '@/components/animations/FadeUp'
 import TextReveal from '@/components/animations/TextReveal'
 import SectionLabel from '@/components/ui/SectionLabel'
@@ -50,8 +51,8 @@ function WorkCard({ project }) {
             {project.result}
           </span>
         )}
-        {project.url && (
-          <span className="mt-3 text-fog-muted text-xs font-mono">↗ Visit site</span>
+        {project.slug && (
+          <span className="mt-3 text-fog-muted text-xs font-mono">View case study →</span>
         )}
       </div>
 
@@ -68,17 +69,15 @@ function WorkCard({ project }) {
     </>
   )
 
-  if (project.url) {
+  if (project.slug) {
     return (
-      <a
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={`/work/${project.slug}`}
         className={`block ${sharedClass}`}
         data-cursor-hover
       >
         {inner}
-      </a>
+      </Link>
     )
   }
 
